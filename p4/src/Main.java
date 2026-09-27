@@ -1,13 +1,25 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
-
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+//Este main es para el analizador de numeros
+void main(String[] args) {
+    if (args.length == 0){
+        System.out.println("Uso: java Analizador num1 num2 ...");
+        return;
     }
+    int cantidad = args.length;
+
+    if (cantidad > 10) {
+        System.out.println("Solo se permiten máximo 10 números.");
+        System.out.println("Se tomarán únicamente los primeros 10.");
+        cantidad = 10;
+    }
+
+    int[] numeros = new int[cantidad];
+
+    for (int i = 0; i < cantidad; i++) {
+        numeros[i] = Integer.parseInt(args[i]);
+    }
+
+    AnalizadorDeNumeros analizador = new AnalizadorDeNumeros(numeros);
+
+    analizador.mostraNumeros();
+
 }
