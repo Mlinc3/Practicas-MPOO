@@ -20,6 +20,6 @@ void main(String[] args) {
 
     AnalizadorDeNumeros analizador = new AnalizadorDeNumeros(numeros);
 
-    analizador.mostraNumeros();
+    System.out.println(analizador.mostraNumeros());
 
 }
