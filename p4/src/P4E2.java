@@ -10,8 +10,9 @@ public class P4E2 {
         Scanner sc = new Scanner(System.in);
         final int TOTAL_ALUMNOS = 20;
         final double CALIFICACION_MINIMA = 6.0;
-        
+        //Se definieron dos limites tanto para el total de alumnos como para la calificacion minima y estos no cambien
         double[] calificaciones = new double[TOTAL_ALUMNOS];
+        //Se utilizo una lista simple definiendo los limites de esta
         double suma = 0;
         int aprobados = 0;
 
@@ -25,7 +26,7 @@ public class P4E2 {
                 }
             } while (calificaciones[i] < 0 || calificaciones[i] > 10);
         }
-
+        //Aqui se utiliza un for para ir ingresando las calificaciones y recorrenos dentro de la lista hasta llenarla
         double maximo = calificaciones[0];
         double minimo = calificaciones[0];
 
@@ -41,7 +42,7 @@ public class P4E2 {
                 aprobados++;
             }
         }
-
+        //Aqui se obtiene tanto la calificacion maxima y la minia, tambien el total de alumnos
         double promedio = suma / TOTAL_ALUMNOS;
 
         System.out.println("Reporte de Calificaciones");
