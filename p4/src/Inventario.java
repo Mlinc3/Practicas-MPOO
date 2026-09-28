@@ -73,7 +73,6 @@ public class Inventario {
                 default: System.out.println("Opcion no valida");
             }
         }while (opcion != 2);
-        op.close();
     }
 
     public void actualizarExistencias(int codigo, int nuevaExistencia){
