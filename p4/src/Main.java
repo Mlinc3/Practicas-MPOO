@@ -5,7 +5,7 @@ void main(String[] args) {
         System.out.println("Uso: java Analizador num1 num2 ...");
         return;
     }
-    //Convertimos la lista args a enteros
+    //Obtenemos el tamaño de la lista
     int cantidad = args.length;
     //Este if es para decir que solo se tomaran los 10 primeros valores
     if (cantidad > 10) {
