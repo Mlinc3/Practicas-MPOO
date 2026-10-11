@@ -1,0 +1,111 @@
+CONTEXTO:
+Se utiliza Java 21 en la ide intellijeid, solo con scanner como paquete adcional. 
+
+OBJETIVO:
+Es un cajero automatico con un menu repetitivo que permita depositos, retiros, consulta de saldo
+y salir unicamente cuando el usuario lo indique.
+Se debe de crear una cuenta al iniciar el programa para podre registrar los depositos y retiros
+Se deben de guardar en una lista los movimientos cuando se consulte el saldo, se deben de 
+mostrar los 2 ultimos movimientos
+Se puedes usar listas o Hashtable para poder, poner si fue deposito retiro, el monto y num de mov.
+Se debe de redondear a 2 decimales
+Son 4 clases y un main prinipal, Retiro,Deposito,Cuenta,Main,CajeroAutomatico
+La moneda es en peso mexicano
+
+CODIGO
+┌──────────────────────────────────┐
+│              Cuenta              │
+├──────────────────────────────────┤
+│ - numeroCuenta : int             │
+│ - titular : String               │
+│ - saldo : double                 │
+├──────────────────────────────────┤
+│ + Cuenta(int, String, double)    │
+│ + getSaldo() : double            │
+│ + setSaldo(double) : void        │
+│ + getNumeroCuenta() : int        │
+│ + getTitular() : String          │
+│ + mostrarSaldo() : void          │
+└──────────────────────────────────┘
+             ▲              ▲
+             │              │
+        utiliza          utiliza
+             │              │
+┌────────────┴────────┐ ┌───┴────────────────────┐
+│      Depositos      │ │         Retiros         │
+├─────────────────────┤ ├─────────────────────────┤
+│ - cuenta : Cuenta   │ │ - cuenta : Cuenta       │
+├─────────────────────┤ ├─────────────────────────┤
+│ + Depositos(Cuenta) │ │ + Retiros(Cuenta)       │
+│ + depositar(double) │ │ + retirar(double)       │
+│       : void        │ │       : boolean         │
+└─────────────────────┘ └─────────────────────────┘
+             ▲              ▲
+             │              │
+             └──────┬───────┘
+                    │ utiliza
+                    │
+┌──────────────────────────────────┐
+│        CajeroAutomatico          │
+├──────────────────────────────────┤
+│ - cuenta : Cuenta                │
+│ - depositos : Depositos          │
+│ - retiros : Retiros              │
+│ - sc : Scanner                   │
+├──────────────────────────────────┤
+│ + CajeroAutomatico(Cuenta)       │
+│ + mostrarMenu() : void           │
+│ - opcionDeposito() : void        │
+│ - opcionRetiro() : void          │
+│ - opcionSaldo() : void           │
+└──────────────────────────────────┘
+                    ▲
+                    │ crea/utiliza
+                    │
+┌──────────────────────────────────┐
+│               Main               │
+├──────────────────────────────────┤
+│ + main(String[] args) : void     │
+└──────────────────────────────────┘
+
+
+
+RESTRICCIONES
+No se puede ingresar caractres o texto, a la hora de ingresar o retirar dinero, debe de decir 
+que la operacion no se puede realizar 
+
+No puede ingresarse valores negativos
+No puedes retirar mas de 12000 pesos  
+Quiero que todas las explicaciones, correcciones, ejemplos y soluciones de programación se mantengan únicamente dentro de los temas que hemos visto hasta ahora en el curso.
+Estructuras de repetición y colecciones.
+Hasta ahora hemos trabajado con:
+- Clases y objetos.
+- Atributos y métodos.
+- Constructores.
+- Tipos de datos primitivos y referencias.
+- Arreglos.
+- static y final.
+- Enumeraciones (enum).
+- Estructuras condicionales: if, if-else, switch-case y operador ternario.
+- Estructuras de repetición: while, do-while y for.
+- for-each.
+- Ciclos anidados.
+- break y continue.
+- Colecciones básicas de Java.
+- List, Set y Map a nivel introductorio.
+- ArrayList.
+- HashSet.
+- Hashtable.
+- Recorrido de Hashtable mediante Enumeration y keys().
+- Uso básico de clases de java.util, como Scanner.
+- Interfaces a nivel básico.
+- Date y Calendar a nivel básico.
+No utilices temas posteriores que todavía no hemos estudiado
+CRITERIOS DE EXITO 
+Debe de devolver que no se puede realizar la accion cuando se ingresan caracterres o texto en vez
+de un numero.
+Cuando hay una opcion no disponible debe de decir que opcion no disponible 
+
+FORMATO DE RESPUESTA
+Se necesita 5 archivos .java, Retiros.java, Depositos.java, Main.java, Cuenta.java,CajeroAutomatico.java
+Documentado en javadoc
