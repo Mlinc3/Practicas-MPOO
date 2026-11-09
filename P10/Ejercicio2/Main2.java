@@ -16,4 +16,5 @@ void main(){
                 emp.getClass().getSimpleName(),
                 emp.calcularSalario()
         );
+    }
 }
