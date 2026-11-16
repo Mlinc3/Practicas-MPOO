@@ -1,0 +1,237 @@
+CONTEXTO:
+Se utiliza Java 21 en la ide intellijeid. 
+Clases y objetos.
+
+Encapsulamiento mediante atributos private y/o protected.
+
+Constructores y uso de super().
+
+Herencia mediante extends.
+
+Sobrescritura de métodos con @Override.
+
+Polimorfismo.
+
+Colecciones dinámicas mediante ArrayList.
+
+Uso de LocalDate y DayOfWeek para identificar fechas y días de la semana.
+
+Estructuras condicionales (if, else).
+
+OBJETIVO:
+Una empresa necesita desarrollar un sistema que permita procesar pagos utilizando diferentes tipos de tarjetas. Actualmente existen dos métodos de pago: tarjeta de débito y tarjeta de crédito.
+
+Cada tipo de tarjeta tiene una comisión diferente dependiendo de las condiciones establecidas:
+
+Tarjeta de débito: cobra una comisión del 10% cuando el pago se realiza de lunes a viernes. Durante los fines de semana y días festivos no cobra comisión.
+
+Tarjeta de crédito: cobra una comisión del 15% durante todo el año, sin importar el día en que se realice el pago.
+
+El sistema debe permitir registrar diferentes tarjetas y procesar sus pagos mediante una colección común, utilizando los principios de herencia y polimorfismo.
+OBJETIVO GENERAL
+
+Desarrollar un sistema de pagos en Java que aplique los conceptos de herencia, sobrescritura de métodos y polimorfismo, permitiendo procesar diferentes tipos de tarjetas mediante una referencia y colección de tipo común.
+REQUERIMIENTOS FUNCIONALES
+
+A. Clase padre: MetodoPago
+
+Crear una clase padre llamada MetodoPago que represente las características generales de un método de pago.
+
+Debe contener:
+
+titular: nombre del titular de la tarjeta.
+
+monto: cantidad que se desea pagar.
+
+Requisitos:
+
+Los atributos deben estar encapsulados.
+
+Crear un constructor para inicializar los atributos.
+
+Crear los getters y setters correspondientes.
+
+Declarar un método procesarPago() que será sobrescrito por las clases hijas.
+
+El método debe permitir que cada tipo de tarjeta procese el pago de manera diferente.
+
+B. Clase hija: TarjetaDeDebito
+
+Crear la clase TarjetaDeDebito, que herede de MetodoPago.
+
+Debe cumplir con lo siguiente:
+
+Heredar los atributos y comportamientos de la clase padre.
+
+Utilizar super() en su constructor.
+
+Sobrescribir el método procesarPago() utilizando @Override.
+
+Aplicar las siguientes reglas de comisión:
+
+De lunes a viernes: 10% de comisión.
+
+Sábados y domingos: 0% de comisión.
+
+Días festivos: 0% de comisión.
+
+Mostrar en pantalla:
+
+Tipo de tarjeta.
+
+Monto original.
+
+Porcentaje de comisión aplicado.
+
+Importe de la comisión.
+
+Total a pagar.
+
+C. Clase hija: TarjetaDeCredito
+
+Crear la clase TarjetaDeCredito, que herede de MetodoPago.
+
+Debe cumplir con lo siguiente:
+
+Heredar los atributos y comportamientos de la clase padre.
+
+Utilizar super() en su constructor.
+
+Sobrescribir el método procesarPago() utilizando @Override.
+
+Aplicar una comisión fija del 15% durante todo el año.
+
+Mostrar en pantalla:
+
+Tipo de tarjeta.
+
+Monto original.
+
+Porcentaje de comisión aplicado.
+
+Importe de la comisión.
+
+Total a pagar.
+
+D. Identificación de fechas y días festivos
+
+El sistema debe identificar si un pago se realiza en un día laboral, fin de semana o día festivo.
+
+Requisitos:
+
+Utilizar LocalDate para representar la fecha del pago.
+
+Utilizar DayOfWeek para identificar el día de la semana.
+
+Permitir manejar una lista de fechas festivas previamente establecidas.
+
+Para este ejercicio, los días festivos pueden registrarse manualmente en el programa. No es necesario utilizar servicios externos ni consultar calendarios por internet.
+
+Si la fecha corresponde a un día festivo, la tarjeta de débito debe aplicar 0% de comisión, incluso si el día es de lunes a viernes.
+
+E. Clase principal: Main
+
+Crear una clase Main que permita probar el funcionamiento del sistema.
+
+Debe realizar lo siguiente:
+
+Crear diferentes objetos de tipo TarjetaDeDebito y TarjetaDeCredito.
+
+Almacenar los objetos en una colección común de tipo ArrayList<MetodoPago>.
+
+Recorrer la colección utilizando un ciclo for-each.
+
+Invocar el método procesarPago() desde la referencia de la clase padre.
+
+Comprobar que cada objeto ejecute su propia versión del método mediante polimorfismo.
+
+Mostrar los resultados de todos los pagos realizados.
+CODIGO
+ ┌──────────────────────────────┐
+                  │          MetodoPago          │
+                  ├──────────────────────────────┤
+                  │ # titular: String            │
+                  │ # monto: double              │
+                  ├──────────────────────────────┤
+                  │ + MetodoPago(titular, monto) │
+                  │ + getTitular(): String       │
+                  │ + setTitular(String): void   │
+                  │ + getMonto(): double         │
+                  │ + setMonto(double): void     │
+                  │ + procesarPago(): void       │
+                  └──────────────┬───────────────┘
+                                 │
+                       ┌─────────┴─────────┐
+                       │                   │
+                 ┌─────▼──────────┐  ┌─────▼──────────┐
+                 │ TarjetaDeDebito│  │TarjetaDeCredito│
+                 ├────────────────┤  ├────────────────┤
+                 │                │  │                │
+                 ├────────────────┤  ├────────────────┤
+                 │ + TarjetaDe    │  │ + TarjetaDe    │
+                 │   Debito(...)  │  │   Credito(...) │
+                 │ + procesarPago │  │ + procesarPago │
+                 │   (): void     │  │   (): void     │
+                 └────────────────┘  └────────────────┘
+
+                  ┌──────────────────────────────┐
+                  │             Main             │
+                  ├──────────────────────────────┤
+                  │ - pagos: ArrayList<          │
+                  │   MetodoPago>                │
+                  │ - diasFestivos: ArrayList<   │
+                  │   LocalDate>                 │
+                  ├──────────────────────────────┤
+                  │ + main(String[]): void      │
+                  └──────────────────────────────┘
+
+Simbología UML:
+
++ representa un atributo o método público.
+
+- representa un atributo o método privado.
+
+# representa un atributo o método protegido.
+
+La flecha de herencia apunta hacia la clase padre.
+
+La clase Main administra la colección de pagos y las fechas festivas. Las clases hijas heredan de MetodoPago y sobrescriben procesarPago().
+RESTRICCIONES
+
+Utilizar Java 21.
+
+Desarrollar el proyecto en IntelliJ IDEA.
+
+Mantener una clase por archivo .java.
+
+Utilizar nombres de clases en PascalCase.
+
+No colocar toda la lógica dentro de main.
+
+No utilizar métodos estáticos para sustituir el comportamiento polimórfico de las clases.
+
+No utilizar interfaces, streams, expresiones lambda ni conceptos que no sean necesarios para esta práctica.
+
+Utilizar extends para establecer la herencia.
+
+Utilizar super() para inicializar los atributos heredados.
+
+Utilizar @Override para sobrescribir procesarPago().
+
+Procesar los objetos desde una colección común de tipo ArrayList<MetodoPago>.
+
+No utilizar instanceof ni downcasting para decidir qué tipo de comisión aplicar. Cada clase debe resolver su propio comportamiento mediante polimorfismo.
+
+Validar que el monto del pago sea mayor que cero.
+
+Evitar que los días festivos reciban comisión en los pagos con tarjeta de débito.
+
+FORMATO DE RESPUESTA
+MetodoPago.java
+
+TarjetaDeDebito.java
+
+TarjetaDeCredito.java
+
+Main.java
+Los cuatro archivos .java completos.
