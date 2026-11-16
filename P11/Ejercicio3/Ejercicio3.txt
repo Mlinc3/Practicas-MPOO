@@ -1,0 +1,174 @@
+
+CONTEXTO
+Desarrollar un simulador de zoológico en Java que permita administrar diferentes especies de animales mediante programación orientada a objetos.
+
+El proyecto debe demostrar el uso de interfaces, clases abstractas, herencia, polimorfismo, colecciones dinámicas, `instanceof` y casting, siguiendo los conceptos vistos en clase.
+
+OBJETIVO
+Crear un simulador de zoológico donde diferentes animales compartan una interfaz común y puedan ser administrados dinámicamente mediante una colección `ArrayList`.
+
+REQUERIMIENTOS
+
+1. Crear una interfaz `Animal` que establezca los métodos comunes para todos los animales:
+   - `getNombre()`
+   - `getEspecie()`
+   - `getEdad()`
+   - `presentarse()`
+   - `emitirSonido()`
+   - `alimentarse()`
+
+2. Crear una clase abstracta `AnimalBase` que implemente la interfaz `Animal`.
+   - Contener los atributos privados `nombre` y `edad`.
+   - Implementar los métodos generales.
+   - Declarar los métodos específicos que deberán sobrescribir las clases hijas.
+
+3. Crear las siguientes clases que hereden de `AnimalBase`:
+   - `Leon`
+   - `Elefante`
+   - `Jirafa`
+   - `Mono`
+   - `Aguila`
+   - `Delfin`
+   - `Tortuga`
+   - `Serpiente`
+
+4. Crear una interfaz adicional llamada `Entrenable`.
+   - Contener el método `entrenar()`.
+   - Implementarla únicamente en los animales que puedan realizar actividades de entrenamiento, como `Mono` y `Delfin`.
+
+5. Crear una clase `Main` que administre el zoológico mediante un `ArrayList<Animal>`.
+
+FUNCIONALIDADES DEL SIMULADOR
+
+El programa deberá contar con un menú que permita:
+
+1. Mostrar todos los animales registrados.
+2. Mostrar los sonidos de los animales.
+3. Alimentar a todos los animales.
+4. Registrar nuevos animales.
+5. Entrenar a los animales que implementen `Entrenable`.
+6. Buscar un animal por nombre.
+7. Eliminar un animal.
+8. Salir del programa.
+
+APLICACIÓN DEL POLIMORFISMO
+
+Utilizar recorridos `for-each` para ejecutar los métodos de los animales mediante referencias de tipo `Animal`.
+
+También implementar `instanceof` y casting para identificar qué animales implementan la interfaz `Entrenable`.
+
+Ejemplo de la lógica esperada:
+
+```java
+for (Animal animal : zoologico) {
+    animal.presentarse();
+}
+
+for (Animal animal : zoologico) {
+    animal.emitirSonido();
+}
+
+for (Animal animal : zoologico) {
+    if (animal instanceof Entrenable) {
+        ((Entrenable) animal).entrenar();
+    }
+}
+```
+DIAGRAMA DE CLASES
+
+El diseño debe respetar la siguiente estructura:
+
+```text
+                  <<interface>>
+                      Animal
+                 -----------------
+                 + getNombre()
+                 + getEspecie()
+                 + getEdad()
+                 + presentarse()
+                 + emitirSonido()
+                 + alimentarse()
+                         ▲
+                         |
+                         |
+                  AnimalBase
+                 <<abstract>>
+                 -----------------
+                 - nombre: String
+                 - edad: int
+                 -----------------
+                 + AnimalBase()
+                 + getNombre()
+                 + getEspecie()
+                 + getEdad()
+                 + presentarse()
+                 + emitirSonido()
+                 + alimentarse()
+                         ▲
+          _______________|________________________
+         |       |       |       |       |        |
+        Leon  Elefante Jirafa  Mono   Aguila   Delfin
+                                      |
+                                  Tortuga
+                                      |
+                                  Serpiente
+
+
+                  <<interface>>
+                    Entrenable
+                 -----------------
+                 + entrenar()
+                       ▲
+                       |
+                 _______________
+                 |             |
+                Mono         Delfin
+
+
+                       Main
+                 -----------------
+                 - zoologico: ArrayList<Animal>
+                 - scanner: Scanner
+                 -----------------
+                 + main()
+                 + mostrarAnimales()
+                 + reproducirSonidos()
+                 + alimentarAnimales()
+                 + agregarAnimal()
+                 + entrenarAnimales()
+                 + buscarAnimal()
+                 + eliminarAnimal()
+                 + mostrarMenu()
+DOCUMENTACIÓN
+
+Crear un documento de documentación con los siguientes apartados:
+
+1. Objetivo.
+2. Descripción del problema.
+3. Requerimientos.
+4. Diseño de solución.
+5. Diagrama de clases UML.
+6. Implementación: explicar la función y responsabilidad de cada clase, sin colocar código.
+7. Evidencia de funcionamiento: dejar espacios para capturas de pantalla.
+8. Conclusiones.
+9. Referencias bibliográficas.
+
+ENTREGA DEL PROYECTO
+
+- Entregar todos los archivos `.java` por separado.
+- Entregar un archivo ZIP con el proyecto completo.
+- Entregar la documentación en formato `.docx` editable.
+- Incluir el diagrama de clases UML.
+- Asegurarse de que el proyecto compile y funcione en IntelliJ IDEA con Java 21.
+
+RESTRICCIONES DE PROGRAMACIÓN
+
+- Mantener una programación orientada a objetos.
+- Separar las responsabilidades de cada clase.
+- No colocar toda la lógica dentro de `Main`.
+- Utilizar nombres de clases y métodos en español.
+- Utilizar comentarios `//` para explicar las partes importantes.
+- Evitar código innecesariamente complejo.
+- No utilizar conceptos que no sean necesarios para cumplir la práctica.
+- Respetar la estructura de las interfaces y clases abstractas.
+- Utilizar `@Override` al sobrescribir métodos.
